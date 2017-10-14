@@ -52,7 +52,7 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         
-        if peripheral.identifier.uuidString == "800C82B2-2EFE-0153-17F1-53C1B5D88762"
+        if peripheral.identifier.uuidString == "B228A091-8CD7-C338-1FF2-B160D59D2CD8"
         {
             print("The Name is: \(peripheral.name ?? "nil")")
             label1.text = "Connected to: \(peripheral.name!)"
@@ -92,8 +92,39 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
         
         if let characteristics = service.characteristics {
             for characteristic in characteristics {
+                if(characteristic.uuid.uuidString == "62644570-5265-6164-5065-726300000000"){
+                    characteristicsTextView.text.append("\n" + "bdEpReadPerc found below")
+                }
                 characteristicsTextView.text.append("\n\(characteristic.uuid)")
                 print(characteristic.uuid)
+               // peripheral.writeValue(<#T##data: Data##Data#>, for: <#T##CBDescriptor#>)
+                peripheral.writeValue(<#T##data: Data##Data#>, for: <#T##CBCharacteristic#>, type: <#T##CBCharacteristicWriteType#>)
+                var dateArray = [UInt8]()
+//                    = ([
+//                        UInt8(00)
+//                        , UInt8(2010)    //year
+//                        , UInt8(01)     //month
+//                        , UInt8(01)     //day
+//                        , UInt8(02)     //hour
+//                        , UInt8(59)     //minute
+//                        , UInt8(00)     //seconds
+//                        , UInt8(00)     //mseconds
+//                        ])
+                let yearLo = UInt8(2017 & 0xFF) // mask to avoid overflow error on conversion to UInt8
+                let yearHi = UInt8(2017 >> 8)
+                
+                dateArray.append(UInt8(00))
+                dateArray.append(yearLo)
+                dateArray.append(yearHi)
+                dateArray.append(UInt8(01))
+                dateArray.append(UInt8(01))
+                dateArray.append(UInt8(02))
+                dateArray.append(UInt8(59))
+                dateArray.append(UInt8(00))
+                dateArray.append(UInt8(00))
+                
+                
+                let data:Data = Data(dateArray)
                 peripheral.readValue(for: characteristic)
             }
         }
@@ -103,12 +134,13 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
         if let value = characteristic.value {
             
-            let data = NSString(data: value, encoding: 8)!
-            print(data)
-            characteristicsTextView.text.append("\n\(data)")
-            
+            if let data:NSString = NSString(data: value, encoding: 8) {
+                print(data)
+                characteristicsTextView.text.append("\n\(data)")
+            }
         }
     }
+
     
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
         switch peripheral.state {
