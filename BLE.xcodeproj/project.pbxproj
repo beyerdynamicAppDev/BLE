@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		875068511F94C2BB00380DCB /* ScanningForDevicesTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875068501F94C2BB00380DCB /* ScanningForDevicesTableVC.swift */; };
+		875068551F94D67500380DCB /* PeriphiralDetailTableVCTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875068541F94D67500380DCB /* PeriphiralDetailTableVCTableViewController.swift */; };
+		875068591F94E19E00380DCB /* BluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875068581F94E19E00380DCB /* BluetoothManager.swift */; };
 		AA5CD47D1F8933ED00DA106C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5CD47C1F8933ED00DA106C /* AppDelegate.swift */; };
 		AA5CD47F1F8933ED00DA106C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5CD47E1F8933ED00DA106C /* ViewController.swift */; };
 		AA5CD4821F8933ED00DA106C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA5CD4801F8933ED00DA106C /* Main.storyboard */; };
@@ -15,6 +18,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		875068501F94C2BB00380DCB /* ScanningForDevicesTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanningForDevicesTableVC.swift; sourceTree = "<group>"; };
+		875068541F94D67500380DCB /* PeriphiralDetailTableVCTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriphiralDetailTableVCTableViewController.swift; sourceTree = "<group>"; };
+		875068581F94E19E00380DCB /* BluetoothManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothManager.swift; sourceTree = "<group>"; };
 		AA5CD4791F8933ED00DA106C /* BLE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BLE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA5CD47C1F8933ED00DA106C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AA5CD47E1F8933ED00DA106C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -60,6 +66,9 @@
 				AA5CD4831F8933ED00DA106C /* Assets.xcassets */,
 				AA5CD4851F8933ED00DA106C /* LaunchScreen.storyboard */,
 				AA5CD4881F8933ED00DA106C /* Info.plist */,
+				875068501F94C2BB00380DCB /* ScanningForDevicesTableVC.swift */,
+				875068541F94D67500380DCB /* PeriphiralDetailTableVCTableViewController.swift */,
+				875068581F94E19E00380DCB /* BluetoothManager.swift */,
 			);
 			path = BLE;
 			sourceTree = "<group>";
@@ -137,7 +146,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA5CD47F1F8933ED00DA106C /* ViewController.swift in Sources */,
+				875068511F94C2BB00380DCB /* ScanningForDevicesTableVC.swift in Sources */,
+				875068551F94D67500380DCB /* PeriphiralDetailTableVCTableViewController.swift in Sources */,
 				AA5CD47D1F8933ED00DA106C /* AppDelegate.swift in Sources */,
+				875068591F94E19E00380DCB /* BluetoothManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,12 +286,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3L9UYV5C43;
+				DEVELOPMENT_TEAM = VU796VE2U4;
 				INFOPLIST_FILE = BLE/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Christian.Mansch.BLE;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -289,12 +305,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3L9UYV5C43;
+				DEVELOPMENT_TEAM = VU796VE2U4;
 				INFOPLIST_FILE = BLE/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Christian.Mansch.BLE;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

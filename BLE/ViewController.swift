@@ -21,10 +21,14 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     var centralManager: CBCentralManager!
     var peripheral: CBPeripheral?
     var headphoneTag: CBPeripheral?
+    var services: [CBService]!
+    var characteristics: [CBCharacteristic]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.servicesTextView.isEditable = false
+        self.characteristicsTextView.isEditable = false
         self.buttonDisconnect.isEnabled = false
     }
     
@@ -78,6 +82,7 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
         if let services = peripheral.services {
+            self.services = services
             for service in services {
                 servicesTextView.text.append("\n\(service.uuid.uuidString)")
                 peripheral.discoverCharacteristics(nil, for: service)
@@ -93,38 +98,24 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
         if let characteristics = service.characteristics {
             for characteristic in characteristics {
                 if(characteristic.uuid.uuidString == "62644570-5265-6164-5065-726300000000"){
+                    let year = 2017
+                    let loByte = year & 0xFF
+                    let hiByte = (year >> 8) & 0xFF
+                    
+                    let day = 18
+                    let month = 10
+                    let hours = 02
+                    let minutes = 59
+                    let seconds = 00
+                    let mseconds = 00
+                    
+                    let dateArray:[UInt8] = [0x00, UInt8(loByte), UInt8(hiByte), UInt8(month), UInt8(day), UInt8(hours), UInt8(minutes), UInt8(seconds), UInt8(mseconds)]
+                    let data = Data(bytes:dateArray)
+                    //peripheral.writeValue(data, for: characteristic, type: CBCharacteristicWriteType.withResponse)
                     characteristicsTextView.text.append("\n" + "bdEpReadPerc found below")
                 }
                 characteristicsTextView.text.append("\n\(characteristic.uuid)")
                 print(characteristic.uuid)
-               // peripheral.writeValue(<#T##data: Data##Data#>, for: <#T##CBDescriptor#>)
-                peripheral.writeValue(<#T##data: Data##Data#>, for: <#T##CBCharacteristic#>, type: <#T##CBCharacteristicWriteType#>)
-                var dateArray = [UInt8]()
-//                    = ([
-//                        UInt8(00)
-//                        , UInt8(2010)    //year
-//                        , UInt8(01)     //month
-//                        , UInt8(01)     //day
-//                        , UInt8(02)     //hour
-//                        , UInt8(59)     //minute
-//                        , UInt8(00)     //seconds
-//                        , UInt8(00)     //mseconds
-//                        ])
-                let yearLo = UInt8(2017 & 0xFF) // mask to avoid overflow error on conversion to UInt8
-                let yearHi = UInt8(2017 >> 8)
-                
-                dateArray.append(UInt8(00))
-                dateArray.append(yearLo)
-                dateArray.append(yearHi)
-                dateArray.append(UInt8(01))
-                dateArray.append(UInt8(01))
-                dateArray.append(UInt8(02))
-                dateArray.append(UInt8(59))
-                dateArray.append(UInt8(00))
-                dateArray.append(UInt8(00))
-                
-                
-                let data:Data = Data(dateArray)
                 peripheral.readValue(for: characteristic)
             }
         }
