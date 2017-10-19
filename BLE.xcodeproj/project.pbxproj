@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8706730E1F9778B6004AF05C /* CharacteristicDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8706730D1F9778B6004AF05C /* CharacteristicDetailVC.swift */; };
 		875068511F94C2BB00380DCB /* ScanningForDevicesTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875068501F94C2BB00380DCB /* ScanningForDevicesTableVC.swift */; };
 		875068551F94D67500380DCB /* PeriphiralDetailTableVCTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875068541F94D67500380DCB /* PeriphiralDetailTableVCTableViewController.swift */; };
 		875068591F94E19E00380DCB /* BluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875068581F94E19E00380DCB /* BluetoothManager.swift */; };
+		877922571F97C7C30038D762 /* DatePickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877922561F97C7C30038D762 /* DatePickerVC.swift */; };
 		AA5CD47D1F8933ED00DA106C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5CD47C1F8933ED00DA106C /* AppDelegate.swift */; };
 		AA5CD47F1F8933ED00DA106C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5CD47E1F8933ED00DA106C /* ViewController.swift */; };
 		AA5CD4821F8933ED00DA106C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA5CD4801F8933ED00DA106C /* Main.storyboard */; };
@@ -18,9 +20,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8706730D1F9778B6004AF05C /* CharacteristicDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacteristicDetailVC.swift; sourceTree = "<group>"; };
 		875068501F94C2BB00380DCB /* ScanningForDevicesTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanningForDevicesTableVC.swift; sourceTree = "<group>"; };
 		875068541F94D67500380DCB /* PeriphiralDetailTableVCTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriphiralDetailTableVCTableViewController.swift; sourceTree = "<group>"; };
 		875068581F94E19E00380DCB /* BluetoothManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothManager.swift; sourceTree = "<group>"; };
+		877922561F97C7C30038D762 /* DatePickerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerVC.swift; sourceTree = "<group>"; };
 		AA5CD4791F8933ED00DA106C /* BLE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BLE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA5CD47C1F8933ED00DA106C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AA5CD47E1F8933ED00DA106C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -69,6 +73,8 @@
 				875068501F94C2BB00380DCB /* ScanningForDevicesTableVC.swift */,
 				875068541F94D67500380DCB /* PeriphiralDetailTableVCTableViewController.swift */,
 				875068581F94E19E00380DCB /* BluetoothManager.swift */,
+				8706730D1F9778B6004AF05C /* CharacteristicDetailVC.swift */,
+				877922561F97C7C30038D762 /* DatePickerVC.swift */,
 			);
 			path = BLE;
 			sourceTree = "<group>";
@@ -147,6 +153,8 @@
 			files = (
 				AA5CD47F1F8933ED00DA106C /* ViewController.swift in Sources */,
 				875068511F94C2BB00380DCB /* ScanningForDevicesTableVC.swift in Sources */,
+				877922571F97C7C30038D762 /* DatePickerVC.swift in Sources */,
+				8706730E1F9778B6004AF05C /* CharacteristicDetailVC.swift in Sources */,
 				875068551F94D67500380DCB /* PeriphiralDetailTableVCTableViewController.swift in Sources */,
 				AA5CD47D1F8933ED00DA106C /* AppDelegate.swift in Sources */,
 				875068591F94E19E00380DCB /* BluetoothManager.swift in Sources */,

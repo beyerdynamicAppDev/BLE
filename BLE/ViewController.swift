@@ -102,7 +102,7 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
                     let loByte = year & 0xFF
                     let hiByte = (year >> 8) & 0xFF
                     
-                    let day = 18
+                    let day = 19
                     let month = 10
                     let hours = 02
                     let minutes = 59
@@ -111,7 +111,7 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
                     
                     let dateArray:[UInt8] = [0x00, UInt8(loByte), UInt8(hiByte), UInt8(month), UInt8(day), UInt8(hours), UInt8(minutes), UInt8(seconds), UInt8(mseconds)]
                     let data = Data(bytes:dateArray)
-                    //peripheral.writeValue(data, for: characteristic, type: CBCharacteristicWriteType.withResponse)
+                    peripheral.writeValue(data, for: characteristic, type: CBCharacteristicWriteType.withResponse)
                     characteristicsTextView.text.append("\n" + "bdEpReadPerc found below")
                 }
                 characteristicsTextView.text.append("\n\(characteristic.uuid)")
