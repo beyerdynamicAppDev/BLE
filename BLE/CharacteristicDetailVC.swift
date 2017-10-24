@@ -20,10 +20,12 @@ class CharacteristicDetailVC: UIViewController {
     @IBOutlet var timestampLabel: UILabel!
     @IBOutlet var stringValueLabel: UILabel!
     @IBOutlet var hexValueLabel: UILabel!
+    @IBOutlet var dateLabel:UILabel!
     var datePicker: UIDatePicker!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        dateLabel.isHidden = true
         self.dateFormatter.dateFormat = "HH:mm:ss"
         NotificationCenter.default.addObserver(self, selector: #selector(updateValue), name: .didUpdateValueForCharacteristic, object: nil)
         
@@ -73,6 +75,18 @@ class CharacteristicDetailVC: UIViewController {
         } else if data.count == 1 {
             self.stringValueLabel.text = "\([UInt8](data).first!)"
         } else {
+            if( "\(self.characteristic.uuid)" == "62644570-5274-6300-0000-000000000000") {
+                dateLabel.isHidden = false
+                let year = data.subdata(in: 0..<2)
+                var month = Int(data[2])
+                var day = Int(data[3])
+                var hour = Int(data[4])
+                var minutes = Int(data[5])
+                var seconds = Int(data[6])
+                let x = UInt16(year.hexEncodedString(), radix: 16)
+                dateLabel.text = "\(x!)-\(month)-\(day)-\(hour)-\(minutes)-\(seconds)"
+            }
+            
             self.stringValueLabel.text =  String(data: data, encoding: String.Encoding.utf8)
         }
         self.hexValueLabel.text = data.hexEncodedString()

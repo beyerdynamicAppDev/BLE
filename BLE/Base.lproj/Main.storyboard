@@ -185,11 +185,19 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="DateLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oze-4H-rkB">
+                                <rect key="frame" x="75" y="294" width="271" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="YWd-Ux-F1E"/>
                     </view>
                     <connections>
+                        <outlet property="dateLabel" destination="oze-4H-rkB" id="yhe-Io-tKF"/>
                         <outlet property="hexValueLabel" destination="GKf-SF-xcG" id="BXa-56-0qv"/>
                         <outlet property="permissionsTextLabel" destination="B2B-im-3Gc" id="1IP-Hz-AeJ"/>
                         <outlet property="stringValueLabel" destination="eMp-9s-6bM" id="lyz-Yd-f0f"/>

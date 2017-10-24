@@ -51,7 +51,7 @@ class DatePickerVC: UIViewController, UIAlertViewDelegate {
             alertMessage += "\(mseconds < 10 ? "0\(mseconds)" : "\(mseconds)")"
             
             
-            let dateArray:[UInt8] = [UInt8(firstComponent), UInt8(loByte), UInt8(hiByte), UInt8(month), UInt8(day), UInt8(hour), UInt8(minute), UInt8(seconds), UInt8(mseconds)]
+            let dateArray:[UInt8] = [UInt8(firstComponent), UInt8(hiByte), UInt8(loByte), UInt8(month), UInt8(day), UInt8(hour), UInt8(minute), UInt8(seconds), UInt8(mseconds)]
             self.sendingData = Data(bytes:dateArray)
         }
         let alertController = UIAlertController(title: "Sending", message: alertMessage, preferredStyle: .alert)
