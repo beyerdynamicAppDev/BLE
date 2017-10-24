@@ -17,7 +17,9 @@ class CharacteristicDetailVC: UIViewController {
     }
     
     @IBOutlet var permissionsTextLabel: UILabel!
-    @IBOutlet var valueTextLabel: UILabel!
+    @IBOutlet var timestampLabel: UILabel!
+    @IBOutlet var stringValueLabel: UILabel!
+    @IBOutlet var hexValueLabel: UILabel!
     var datePicker: UIDatePicker!
     
     override func viewDidLoad() {
@@ -37,28 +39,13 @@ class CharacteristicDetailVC: UIViewController {
         }
         
         self.permissionsTextLabel.text = self.characteristic.generatePermissionsText()
-        
-        if let data = self.characteristic.value {
-            if data.count == 0 {
-                self.valueTextLabel.text = "0"
-            } else if data.count == 1 {
-                self.valueTextLabel.text = "\([UInt8](data))"
-            } else {
-                if(String(describing: self.characteristic.uuid) == "Manufacturer Name String" || self.characteristic.uuid.uuidString == "2A29"){
-                    self.valueTextLabel.text = String(data:data, encoding:String.Encoding.utf8)
-                } else {
-                    self.valueTextLabel.text =  String(data:data, encoding:String.Encoding.utf8)
-                }
-            }
-        } else {
-            self.valueTextLabel.text = "0"
-        }
+        self.readValue()
      }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         BluetoothManager.sharedInstance.currentCharacteristic = self.characteristic
-        self.readValue()
+        
     }
     
     func readValue() {
@@ -79,15 +66,16 @@ class CharacteristicDetailVC: UIViewController {
     
     @objc func updateValue(notification:Notification){
         let data:Data = notification.object as! Data
-            let date = Date()
-            if data.count == 0 {
-                self.valueTextLabel.text = self.dateFormatter.string(from: date) + " 0"
-            } else if data.count == 1 {
-                self.valueTextLabel.text = self.dateFormatter.string(from: date) + " \([UInt8](data))"
-            } else {
-                self.valueTextLabel.text =  String(data: data, encoding: String.Encoding(rawValue: 8))
-            }
-        
+        let date = Date()
+        self.timestampLabel.text = self.dateFormatter.string(from: date)
+        if data.count == 0 {
+            self.stringValueLabel.text = "0"
+        } else if data.count == 1 {
+            self.stringValueLabel.text = "\([UInt8](data).first!)"
+        } else {
+            self.stringValueLabel.text =  String(data: data, encoding: String.Encoding.utf8)
+        }
+        self.hexValueLabel.text = data.hexEncodedString()
     }
     /*
     // MARK: - Navigation

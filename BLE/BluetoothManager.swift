@@ -185,8 +185,6 @@ class BluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate
         }
 //        self.rssiArray[index] = RSSI
     }
-    
-    
 
 }
 
@@ -234,5 +232,11 @@ extension CBCharacteristic {
             permissionsText += " / Notify"
         }
         return permissionsText
+    }
+}
+
+extension Data {
+    func hexEncodedString() -> String {
+        return map { String(format: "%02hhx", $0) }.joined()
     }
 }
