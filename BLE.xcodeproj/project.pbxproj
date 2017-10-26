@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		8706730E1F9778B6004AF05C /* CharacteristicDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8706730D1F9778B6004AF05C /* CharacteristicDetailVC.swift */; };
+		873538CF1F9F8E1E00B091FC /* Data+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873538CE1F9F8E1E00B091FC /* Data+Extension.swift */; };
+		873538D11F9F8E7800B091FC /* Dictonary+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873538D01F9F8E7800B091FC /* Dictonary+Extension.swift */; };
+		873538D31F9F8EA300B091FC /* CBCharacteristic+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873538D21F9F8EA300B091FC /* CBCharacteristic+Extension.swift */; };
+		873538D51F9F8F0500B091FC /* Notification+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873538D41F9F8F0500B091FC /* Notification+Extension.swift */; };
 		875068511F94C2BB00380DCB /* ScanningForDevicesTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875068501F94C2BB00380DCB /* ScanningForDevicesTableVC.swift */; };
 		875068551F94D67500380DCB /* PeriphiralDetailTableVCTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875068541F94D67500380DCB /* PeriphiralDetailTableVCTableViewController.swift */; };
 		875068591F94E19E00380DCB /* BluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875068581F94E19E00380DCB /* BluetoothManager.swift */; };
@@ -21,6 +25,10 @@
 
 /* Begin PBXFileReference section */
 		8706730D1F9778B6004AF05C /* CharacteristicDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacteristicDetailVC.swift; sourceTree = "<group>"; };
+		873538CE1F9F8E1E00B091FC /* Data+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extension.swift"; sourceTree = "<group>"; };
+		873538D01F9F8E7800B091FC /* Dictonary+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictonary+Extension.swift"; sourceTree = "<group>"; };
+		873538D21F9F8EA300B091FC /* CBCharacteristic+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CBCharacteristic+Extension.swift"; sourceTree = "<group>"; };
+		873538D41F9F8F0500B091FC /* Notification+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Extension.swift"; sourceTree = "<group>"; };
 		875068501F94C2BB00380DCB /* ScanningForDevicesTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanningForDevicesTableVC.swift; sourceTree = "<group>"; };
 		875068541F94D67500380DCB /* PeriphiralDetailTableVCTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriphiralDetailTableVCTableViewController.swift; sourceTree = "<group>"; };
 		875068581F94E19E00380DCB /* BluetoothManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothManager.swift; sourceTree = "<group>"; };
@@ -45,6 +53,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		873538CD1F9F8DF700B091FC /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				873538CE1F9F8E1E00B091FC /* Data+Extension.swift */,
+				873538D01F9F8E7800B091FC /* Dictonary+Extension.swift */,
+				873538D21F9F8EA300B091FC /* CBCharacteristic+Extension.swift */,
+				873538D41F9F8F0500B091FC /* Notification+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		873538D61F9FA75A00B091FC /* Designable */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Designable;
+			sourceTree = "<group>";
+		};
 		AA5CD4701F8933ED00DA106C = {
 			isa = PBXGroup;
 			children = (
@@ -64,6 +90,7 @@
 		AA5CD47B1F8933ED00DA106C /* BLE */ = {
 			isa = PBXGroup;
 			children = (
+				873538D61F9FA75A00B091FC /* Designable */,
 				AA5CD47C1F8933ED00DA106C /* AppDelegate.swift */,
 				AA5CD47E1F8933ED00DA106C /* ViewController.swift */,
 				AA5CD4801F8933ED00DA106C /* Main.storyboard */,
@@ -75,6 +102,7 @@
 				875068581F94E19E00380DCB /* BluetoothManager.swift */,
 				8706730D1F9778B6004AF05C /* CharacteristicDetailVC.swift */,
 				877922561F97C7C30038D762 /* DatePickerVC.swift */,
+				873538CD1F9F8DF700B091FC /* Extensions */,
 			);
 			path = BLE;
 			sourceTree = "<group>";
@@ -151,13 +179,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				873538D51F9F8F0500B091FC /* Notification+Extension.swift in Sources */,
 				AA5CD47F1F8933ED00DA106C /* ViewController.swift in Sources */,
+				873538CF1F9F8E1E00B091FC /* Data+Extension.swift in Sources */,
+				873538D31F9F8EA300B091FC /* CBCharacteristic+Extension.swift in Sources */,
 				875068511F94C2BB00380DCB /* ScanningForDevicesTableVC.swift in Sources */,
 				877922571F97C7C30038D762 /* DatePickerVC.swift in Sources */,
 				8706730E1F9778B6004AF05C /* CharacteristicDetailVC.swift in Sources */,
 				875068551F94D67500380DCB /* PeriphiralDetailTableVCTableViewController.swift in Sources */,
 				AA5CD47D1F8933ED00DA106C /* AppDelegate.swift in Sources */,
 				875068591F94E19E00380DCB /* BluetoothManager.swift in Sources */,
+				873538D11F9F8E7800B091FC /* Dictonary+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -138,7 +138,12 @@ class PeriphiralDetailTableVC: UITableViewController, BluetoothManagerDelegate{
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.characteristics[section].count
+        if (self.characteristics[section] == nil) {
+            return 0
+        } else {
+            return self.characteristics[section].count
+        }
+        
     }
         
 

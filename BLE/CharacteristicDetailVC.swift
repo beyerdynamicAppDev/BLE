@@ -16,6 +16,7 @@ class CharacteristicDetailVC: UIViewController {
         readValue()
     }
     
+    @IBOutlet var actionButton: UIBarButtonItem!
     @IBOutlet var permissionsTextLabel: UILabel!
     @IBOutlet var timestampLabel: UILabel!
     @IBOutlet var stringValueLabel: UILabel!
@@ -28,10 +29,9 @@ class CharacteristicDetailVC: UIViewController {
         dateLabel.isHidden = true
         self.dateFormatter.dateFormat = "HH:mm:ss"
         NotificationCenter.default.addObserver(self, selector: #selector(updateValue), name: .didUpdateValueForCharacteristic, object: nil)
-        
+        self.actionButton.isEnabled = false
         if self.characteristic.permissions.contains(.write) {
-            let insertBarButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(insertBarButtonTapped))
-            self.navigationItem.rightBarButtonItems = [insertBarButton]
+            self.actionButton.isEnabled = true
         }
         
         if let valueOfDict = BluetoothManager.sharedInstance.uuidDict[self.characteristic.uuid.uuidString] {
@@ -59,12 +59,16 @@ class CharacteristicDetailVC: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    @objc func insertBarButtonTapped() {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "DatePickerVC") as! DatePickerVC
-        self.datePicker = vc.datePicker
-        self.navigationController?.pushViewController(vc, animated: true)
-        //self.present(vc, animated: true, completion: nil)
-    }
+//    @objc func insertBarButtonTapped(_ sender: UIButton) {
+//        let vc = self.storyboard?.instantiateViewController(withIdentifier: "DatePickerVC") as! DatePickerVC
+//        self.datePicker = vc.datePicker
+//        vc.modalPresentationStyle = .popover
+//        self.present(vc, animated: true, completion: nil)
+//        
+//        //self.navigationController?.presentedViewController?.present(vc, animated: true, completion: nil)
+//        //self.navigationController?.pushViewController(vc, animated: true)
+//        //self.present(vc, animated: true, completion: nil)
+//    }
     
     @objc func updateValue(notification:Notification){
         let data:Data = notification.object as! Data
@@ -75,16 +79,19 @@ class CharacteristicDetailVC: UIViewController {
         } else if data.count == 1 {
             self.stringValueLabel.text = "\([UInt8](data).first!)"
         } else {
-            if( "\(self.characteristic.uuid)" == "62644570-5274-6300-0000-000000000000") {
+            if( "\(self.characteristic.uuid)" == BluetoothManager.sharedInstance.uuidDict.someKeyFor(value: "BD_EAR_PATRON_RTC")) {
                 dateLabel.isHidden = false
-                let year = data.subdata(in: 0..<2)
-                var month = Int(data[2])
-                var day = Int(data[3])
-                var hour = Int(data[4])
-                var minutes = Int(data[5])
-                var seconds = Int(data[6])
-                let x = UInt16(year.hexEncodedString(), radix: 16)
-                dateLabel.text = "\(x!)-\(month)-\(day)-\(hour)-\(minutes)-\(seconds)"
+                let yearData = data.subdata(in: 0..<2)
+                let year = Data().getYearOfLoAndHiByte(loByte: Int(yearData[1]), hiByte: Int(yearData[0]))
+                let month = Int(data[2])
+                let day = Int(data[3])
+                let hour = Int(data[4])
+                let minutes = Int(data[5])
+                let seconds = Int(data[6])
+                //let year = UInt16(yearData.hexEncodedString(), radix: 16)
+                
+                
+                dateLabel.text = "\(year)-\(month)-\(day)-\(hour)-\(minutes)-\(seconds)"
             }
             
             self.stringValueLabel.text =  String(data: data, encoding: String.Encoding.utf8)

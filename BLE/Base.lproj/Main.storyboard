@@ -25,7 +25,7 @@
             </objects>
             <point key="canvasLocation" x="-2310" y="453"/>
         </scene>
-        <!--Scanning For Devices TableVC-->
+        <!--Title-->
         <scene sceneID="2lZ-YV-6G6">
             <objects>
                 <tableViewController id="Gb3-sq-Z02" customClass="ScanningForDevicesTableVC" customModule="BLE" customModuleProvider="target" sceneMemberID="viewController">
@@ -67,7 +67,13 @@
                             <outlet property="delegate" destination="Gb3-sq-Z02" id="5NQ-hu-jQv"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="95J-Dw-6RD"/>
+                    <navigationItem key="navigationItem" title="Title" id="NKd-5y-sPk">
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="0NX-45-Oa3">
+                            <connections>
+                                <action selector="refreshBarButtonPressed:" destination="Gb3-sq-Z02" id="chJ-wz-tm3"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VbK-dD-mwj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -113,7 +119,7 @@
             </objects>
             <point key="canvasLocation" x="-748" y="443"/>
         </scene>
-        <!--Characteristic DetailVC-->
+        <!--Title-->
         <scene sceneID="Noh-63-Qm6">
             <objects>
                 <viewController id="33X-Ov-qQM" customClass="CharacteristicDetailVC" customModule="BLE" customModuleProvider="target" sceneMemberID="viewController">
@@ -186,7 +192,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="DateLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oze-4H-rkB">
-                                <rect key="frame" x="75" y="294" width="271" height="21"/>
+                                <rect key="frame" x="75" y="239" width="271" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -196,7 +202,18 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="YWd-Ux-F1E"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Title" id="ebH-fM-2kF">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="Hua-7T-5eF">
+                            <connections>
+                                <segue destination="iyF-eB-BlE" kind="popoverPresentation" popoverAnchorBarButtonItem="Hua-7T-5eF" id="uiJ-9C-LyL">
+                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                </segue>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="actionButton" destination="Hua-7T-5eF" id="yeV-kb-94Q"/>
                         <outlet property="dateLabel" destination="oze-4H-rkB" id="yhe-Io-tKF"/>
                         <outlet property="hexValueLabel" destination="GKf-SF-xcG" id="BXa-56-0qv"/>
                         <outlet property="permissionsTextLabel" destination="B2B-im-3Gc" id="1IP-Hz-AeJ"/>
@@ -208,10 +225,39 @@
             </objects>
             <point key="canvasLocation" x="109.59999999999999" y="436.73163418290858"/>
         </scene>
+        <!--Table View Controller-->
+        <scene sceneID="T1c-8J-weL">
+            <objects>
+                <tableViewController modalPresentationStyle="pageSheet" id="q8b-hQ-giL" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="1jp-q2-J1a">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="300"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="H5H-ru-shH">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="H5H-ru-shH" id="d7y-bj-Av5">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="q8b-hQ-giL" id="906-sJ-ump"/>
+                            <outlet property="delegate" destination="q8b-hQ-giL" id="pGQ-Fx-wbO"/>
+                        </connections>
+                    </tableView>
+                    <size key="freeformSize" width="375" height="300"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mKS-s2-Ws7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1041" y="157"/>
+        </scene>
         <!--Date PickerVC-->
         <scene sceneID="1kK-k0-Pep">
             <objects>
-                <viewController storyboardIdentifier="DatePickerVC" id="iyF-eB-BlE" customClass="DatePickerVC" customModule="BLE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DatePickerVC" modalPresentationStyle="pageSheet" id="iyF-eB-BlE" customClass="DatePickerVC" customModule="BLE" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XcG-Qu-aji">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -251,7 +297,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xkx-qu-bg4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1034" y="437"/>
+            <point key="canvasLocation" x="1854" y="437"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">

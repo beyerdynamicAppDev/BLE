@@ -58,6 +58,7 @@ class DatePickerVC: UIViewController, UIAlertViewDelegate {
         alertController.addAction(UIAlertAction(title: "Send", style: .default) { (action:UIAlertAction!) in
             
             BluetoothManager.sharedInstance.currentPeriphiral.writeValue(self.sendingData!, for: BluetoothManager.sharedInstance.currentCharacteristic, type: CBCharacteristicWriteType.withResponse)
+            self.dismiss(animated: true, completion: nil)
         })
         alertController.addAction(UIAlertAction(title: "Cancel", style: .default) { (action:UIAlertAction!) in
             print("Cancel")
@@ -65,7 +66,8 @@ class DatePickerVC: UIViewController, UIAlertViewDelegate {
         self.present(alertController, animated: true)
     }
     @IBAction func cancelButtonTapped(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
+        //self.navigationController?.popViewController(animated: true)
     }
     
     

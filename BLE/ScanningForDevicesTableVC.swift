@@ -16,14 +16,16 @@ class ScanningForDevicesTableVC: UITableViewController, BluetoothManagerDelegate
         self.tableView.reloadData()
     }
 
+
+    @IBAction func refreshBarButtonPressed(_ sender: UIBarButtonItem) {
+        BluetoothManager.sharedInstance.refreshScan()
+    }
     var peripherals: [CBPeripheral] = []
     var delegate: BluetoothManagerDelegate!
     var btManager = BluetoothManager.sharedInstance
     var centralManager: CBCentralManager!
     override func viewDidLoad() {
         super.viewDidLoad()
-        let refreshBarButton = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshBarButtonTapped))
-        self.navigationItem.rightBarButtonItems = [refreshBarButton]
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -85,10 +87,6 @@ class ScanningForDevicesTableVC: UITableViewController, BluetoothManagerDelegate
                 
             }
         } 
-    }
-    
-    @objc func refreshBarButtonTapped(){
-        BluetoothManager.sharedInstance.refreshScan()
     }
     /*
     // Override to support conditional editing of the table view.
