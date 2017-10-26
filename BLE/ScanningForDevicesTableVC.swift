@@ -12,7 +12,6 @@ import CoreBluetooth
 class ScanningForDevicesTableVC: UITableViewController, BluetoothManagerDelegate {
     
     func discoveredNewPeriphirals(periphiral: CBPeripheral) {
-        self.peripherals.append(periphiral)
         self.tableView.reloadData()
     }
 
@@ -33,9 +32,8 @@ class ScanningForDevicesTableVC: UITableViewController, BluetoothManagerDelegate
         if(BluetoothManager.sharedInstance.currentPeriphiral != nil) {
             centralManager.cancelPeripheralConnection(BluetoothManager.sharedInstance.currentPeriphiral)
         }
-        self.peripherals = []
         BluetoothManager.sharedInstance.delegate = self
-        BluetoothManager.sharedInstance.startScan()
+        self.btManager.refreshScan()
         self.centralManager = BluetoothManager.sharedInstance.centralManager
     }
 
@@ -53,16 +51,15 @@ class ScanningForDevicesTableVC: UITableViewController, BluetoothManagerDelegate
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return self.peripherals.count
+        return btManager.peripherals.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "periphiralCell", for: indexPath)
 
-        let currentPeriphiral = self.peripherals[indexPath.row]
+        let currentPeriphiral = btManager.peripherals[indexPath.row]
 
-        //currentPeriphiral.readRSSI()
         if(currentPeriphiral.name != nil) {
             cell.textLabel?.text = currentPeriphiral.name! + " RSSI:\(btManager.rssiArray[indexPath.row])"
         } else {
@@ -76,8 +73,8 @@ class ScanningForDevicesTableVC: UITableViewController, BluetoothManagerDelegate
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.centralManager.stopScan()
-        self.centralManager.connect(self.peripherals[indexPath.row], options: nil)
-        self.performSegue(withIdentifier: "PeriphiralDetailSegue", sender: self.peripherals[indexPath.row])
+        self.centralManager.connect(self.btManager.peripherals[indexPath.row], options: nil)
+        self.performSegue(withIdentifier: "PeriphiralDetailSegue", sender: self.btManager.peripherals[indexPath.row])
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -83,6 +83,11 @@ class BluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate
     }
     
     func refreshScan(){
+        self.peripherals = []
+        self.rssiArray = []
+        if(self.centralManager == nil) {
+            self.centralManager = CBCentralManager(delegate: self, queue: nil)
+        }
         self.centralManager.scanForPeripherals(withServices: nil, options: nil)
     }
     
