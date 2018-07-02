@@ -42,7 +42,7 @@ class BluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate
         "62644570-5365-7276-6963-650000000000" : "BD_EAR_PATRON_SERVICE",
         "62644570-5265-6164-5065-726300000000" : "BD_EAR_PATRON_READ_PERCENTAGE",
         "62644570-5265-6164-436F-6E7400000000" : "BD_EAR_PATRON_CONT_VALUES",
-        "62644570-5274-6300-0000-000000000000" : "BD_EAR_PATRON_RTC" 
+        "62644570-5265-616C-436C-6F636B000000" : "BD_EAR_PATRON_RTC" 
     ]
     var centralManager: CBCentralManager!
     var peripherals: [CBPeripheral] = []
