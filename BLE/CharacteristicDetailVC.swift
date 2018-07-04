@@ -81,19 +81,7 @@ class CharacteristicDetailVC: UIViewController {
         } else {
             if( "\(self.characteristic.uuid)" == BluetoothManager.sharedInstance.uuidDict.someKeyFor(value: "BD_EAR_PATRON_RTC")) {
                 dateLabel.isHidden = false
-                let yearData = data.subdata(in: 0..<2)
-                let year = Data().getYearOfLoAndHiByte(loByte: Int(yearData[1]), hiByte: Int(yearData[0]))
-                let month = Int(data[2])
-                let day = Int(data[3])
-                let hour = Int(data[4])
-                let minutes = Int(data[5])
-                let seconds = Int(data[6])
-                //let year = UInt16(yearData.hexEncodedString(), radix: 16)
-                
-                
-                dateLabel.text = "\(year)-\(month)-\(day)-\(hour)-\(minutes)-\(seconds)"
             }
-            
             self.stringValueLabel.text =  String(data: data, encoding: String.Encoding.utf8)
         }
         self.hexValueLabel.text = data.hexEncodedString()
