@@ -79,11 +79,16 @@ class CharacteristicDetailVC: UIViewController {
         } else if data.count == 1 {
             self.stringValueLabel.text = "\([UInt8](data).first!)"
         } else {
-            if( "\(self.characteristic.uuid)" == BluetoothManager.sharedInstance.uuidDict.someKeyFor(value: "BD_EAR_PATRON_RTC")) {
-                dateLabel.isHidden = false
+          if( "\(self.characteristic.uuid)" == BluetoothManager.sharedInstance.uuidDict.someKeyFor(value: "BD_EAR_PATRON_RTC")) {
+            dateLabel.isHidden = false
+            if data.count > 2 {
+              let year = data.getYearOfLoAndHiByte(loByte: Int(data[1]), hiByte: Int(data[0]))
+              dateLabel.text = "\(year)-\(data[2])-\(data[3]) time: \(data[4]):\(data[5]):\(data[6]):\(data[7])"
+
             }
-            self.stringValueLabel.text =  String(data: data, encoding: String.Encoding.utf8)
-        }
+          }
+          self.stringValueLabel.text =  String(data: data, encoding: String.Encoding.utf8)
+      }
         self.hexValueLabel.text = data.hexEncodedString()
     }
     /*
