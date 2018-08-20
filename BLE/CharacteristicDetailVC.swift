@@ -12,6 +12,7 @@ class CharacteristicDetailVC: UIViewController {
 
     var characteristic: CBCharacteristic!
     let dateFormatter = DateFormatter()
+    var timer = Timer()
     @IBAction func refreshButtonTapped(_ sender: UIButton) {
         readValue()
     }
@@ -50,7 +51,7 @@ class CharacteristicDetailVC: UIViewController {
         
     }
     
-    func readValue() {
+  @objc func readValue() {
         BluetoothManager.sharedInstance.currentPeriphiral.readValue(for: self.characteristic)
     }
 
@@ -71,7 +72,7 @@ class CharacteristicDetailVC: UIViewController {
 //    }
     
     @objc func updateValue(notification:Notification){
-        let data:Data = notification.object as! Data
+      let data: Data =  notification.object as! Data
         let date = Date()
         self.timestampLabel.text = self.dateFormatter.string(from: date)
         if data.count == 0 {
@@ -81,10 +82,17 @@ class CharacteristicDetailVC: UIViewController {
         } else {
           if( "\(self.characteristic.uuid)" == BluetoothManager.sharedInstance.uuidDict.someKeyFor(value: "BD_EAR_PATRON_RTC")) {
             dateLabel.isHidden = false
+            // check if data count is greate than 2 for bit data.
+            // we can make the parsing better.
             if data.count > 2 {
-              let year = data.getYearOfLoAndHiByte(loByte: Int(data[1]), hiByte: Int(data[0]))
-              dateLabel.text = "\(year)-\(data[2])-\(data[3]) time: \(data[4]):\(data[5]):\(data[6]):\(data[7])"
-
+              // Timer is set for one sec and it can be changed too.
+              if presentingViewController is CharacteristicDetailVC {
+                timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(CharacteristicDetailVC.readValue)), userInfo: nil, repeats: true)
+                let year = data.getYearOfLoAndHiByte(loByte: Int(data[1]), hiByte: Int(data[0]))
+                self.dateLabel.text = "\(year)-\(data[2])-\(data[3]) time: \(data[4]):\(data[5]):\(data[6])"
+              } else {
+                timer.invalidate()
+              }
             }
           }
           self.stringValueLabel.text =  String(data: data, encoding: String.Encoding.utf8)
